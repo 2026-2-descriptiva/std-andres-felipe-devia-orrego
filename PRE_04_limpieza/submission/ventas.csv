@@ -1,0 +1,104 @@
+supplier_id,supplier,country,city,purchase_date,amount,discount,weight,units,unit_price,contact_email
+0001,IBM Colombia S.A.S.,COL,Medellin,02/02/2026,"$480,000",0.0,50000 g,5,96000.00,compras2@empresa.com
+0002,Microsoft Colombia Inc.,COL,Bogota,03/03/2026,"COP 980,000",5,0.0050 ton,1,980.000.00,compras3@empresa.com
+0003,Grupo Éxito S.A.,COL,Medellin,2026/04/04,480.000,20%,12,1,480.000.00,compras4@empresa.com
+0004,Alpina Productos Alimenticios,COL,Sopo,05-05-26,250000,,5 kg,2,"$125,000.00",compras5@empresa.com
+0005,Cementos Argos S.A.,COL,Medellin,06.06.2026,250.00K,,,20,12500.00,compras6@empresa.com
+0006,Bancolombia S.A.,COL,Medellin,2026-07-07,,5%,,20,175.000.00,compras7@empresa.com
+0007,Ecopetrol S.A.,COL,Bogota,08/08/2026,,0.0,5 kg,10,125.000.00,compras8@empresa.com
+0008,SAP Colombia S.A.S.,COL,Bogota,01/09/2026,2100000,10,5000 g,2,"$1,050,000.00",compras9@empresa.com
+0009,Oracle Colombia Ltda.,COL,Bogota,2026/02/10,"$2,100,000",0%,0.0025 ton,10,210000.00,
+0010,Siemens S.A.S.,COL,Tenjo,11-03-26,"COP 480,000",,10,20,24.000.00,compras11@empresa.com
+0011,Schneider Electric,COL,Bogota,12.04.2026,1.250.000,,50 kg,10,125.000.00,compras12@empresa.com
+0012,ABB Colombia Ltda.,COL,Bogota,2026-05-13,480000,15%,,20,"$24,000.00",compras13@empresa.com
+0013,Amazon Web Services Colombia,COL,Bogota,14/06/2026,1250.00K,0.2,,20,62500.00,compras14@empresa.com
+0014,Google Colombia Ltda.,COL,Bogota,07/15/2026,,0,2.5 kg,2,490.000.00,compras15@empresa.com
+0015,Telefónica Colombia,COL,Bogota,2026/08/16,,0%,5000 g,1,1.250.000.00,compras16@empresa.com
+0016,Claro Colombia,COL,Bogota,17-01-26,3500000,,0.0120 ton,5,"$700,000.00",compras17@empresa.com
+0017,Nutresa S.A.,COL,Medellin,18.02.2026,"$750,000",,10,2,375000.00,compras18@empresa.com
+0018,Postobón S.A.,COL,Medellin,2026-03-19,"COP 1,250,000",0%,25 kg,2,625.000.00,
+0019,Sura S.A.,COL,Medellin,20/04/2026,980.000,0.05,,10,98.000.00,compras20@empresa.com
+0020,Corona S.A.S.,COL,Bogota,05/21/2026,1250000,20,,5,"$250,000.00",compras1@empresa.com
+0021,IBM Colombia S.A.S.,COL,Medellin,2026/06/22,250.00K,5%,2.5 kg,5,50000.00,compras2@empresa.com
+0022,Microsoft Colombia Inc.,COL,Bogota,23-07-26,,,2500 g,2,1.750.000.00,compras3@empresa.com
+0023,Grupo Éxito S.A.,COL,Medellin,24.08.2026,,,0.0500 ton,10,210.000.00,compras4@empresa.com
+0024,Alpina Productos Alimenticios,COL,Sopo,2026-01-25,3500000,15%,5,5,"$700,000.00",compras5@empresa.com
+0025,Cementos Argos S.A.,COL,Medellin,26/02/2026,"$750,000",0.05,50 kg,20,37500.00,compras6@empresa.com
+0026,Bancolombia S.A.,COL,Medellin,03/27/2026,"COP 1,250,000",20,,20,62.500.00,compras7@empresa.com
+0027,Ecopetrol S.A.,COL,Bogota,2026/04/01,3.500.000,10%,,2,1.750.000.00,
+0028,SAP Colombia S.A.S.,COL,Bogota,02-05-26,4800000,,2.5 kg,1,"$4,800,000.00",compras9@empresa.com
+0029,Oracle Colombia Ltda.,COL,Bogota,03.06.2026,750.00K,,50000 g,10,75000.00,compras10@empresa.com
+0030,Siemens S.A.S.,COL,Tenjo,2026-07-04,,15%,0.0120 ton,20,24.000.00,compras11@empresa.com
+0031,Schneider Electric,COL,Bogota,05/08/2026,,0.2,10,,240.000.00,compras12@empresa.com
+0032,ABB Colombia Ltda.,COL,Bogota,01/06/2026,250000,0,50 kg,20,"$12,500.00",compras13@empresa.com
+0033,Amazon Web Services Colombia,COL,Bogota,2026/02/07,"$1,250,000",10%,,5,250000.00,compras14@empresa.com
+0034,Google Colombia Ltda.,COL,Bogota,08-03-26,"COP 3,500,000",,,1,3.500.000.00,compras15@empresa.com
+0035,Telefónica Colombia,COL,Bogota,09.04.2026,1.250.000,,5 kg,20,62.500.00,compras16@empresa.com
+0036,Claro Colombia,COL,Bogota,2026-05-10,480000,10%,50000 g,20,"$24,000.00",
+0037,Nutresa S.A.,COL,Medellin,11/06/2026,980.00K,0.05,0.0100 ton,2,490000.00,compras18@empresa.com
+0038,Postobón S.A.,COL,Medellin,07/12/2026,,20,10,10,25.000.00,compras19@empresa.com
+0039,Sura S.A.,COL,Medellin,2026/08/13,,0%,10 kg,5,50.000.00,compras20@empresa.com
+0040,Corona S.A.S.,COL,Bogota,14-01-26,980000,,,20,"$49,000.00",compras1@empresa.com
+0041,IBM Colombia S.A.S.,COL,Medellin,15.02.2026,"$480,000",,,10,48000.00,compras2@empresa.com
+0042,Microsoft Colombia Inc.,COL,Bogota,2026-03-16,"COP 480,000",20%,5 kg,2,240.000.00,compras3@empresa.com
+0043,Grupo Éxito S.A.,COL,Medellin,17/04/2026,4.800.000,0.2,5000 g,5,960.000.00,compras4@empresa.com
+0044,Alpina Productos Alimenticios,COL,Sopo,05/18/2026,3500000,5,0.0250 ton,2,"$-1,750,000.00",compras5@empresa.com
+0045,Cementos Argos S.A.,COL,Medellin,2026/06/19,1250.00K,15%,50,5,250000.00,
+0046,Bancolombia S.A.,COL,Medellin,20-07-26,,,12 kg,1,4.800.000.00,compras7@empresa.com
+0047,Ecopetrol S.A.,COL,Bogota,21.08.2026,,,,5,196.000.00,compras8@empresa.com
+0048,SAP Colombia S.A.S.,COL,Bogota,2026-01-22,250000,20%,,2,"$125,000.00",compras9@empresa.com
+0049,Oracle Colombia Ltda.,COL,Bogota,23/02/2026,"$980,000",0.0,2.5 kg,1,980000.00,compras10@empresa.com
+0050,Siemens S.A.S.,COL,Tenjo,03/24/2026,"COP 980,000",0,2500 g,5,196.000.00,compras11@empresa.com
+0051,Schneider Electric,COL,Bogota,2026/04/25,480.000,20%,0.0050 ton,5,96.000.00,compras12@empresa.com
+0052,ABB Colombia Ltda.,COL,Bogota,26-05-26,4800000,,25,2,"$2,400,000.00",compras13@empresa.com
+0053,Amazon Web Services Colombia,COL,Bogota,27.06.2026,4800.00K,,12 kg,10,480000.00,compras14@empresa.com
+0054,Google Colombia Ltda.,COL,Bogota,2026-07-01,,0%,,10,98.000.00,
+0055,Telefónica Colombia,COL,Bogota,02/08/2026,,0.15,,10,210.000.00,compras16@empresa.com
+0056,Claro Colombia,COL,Bogota,01/03/2026,250000,0,2.5 kg,10,"$25,000.00",compras17@empresa.com
+0057,Nutresa S.A.,COL,Medellin,2026/02/04,"$2,100,000",0%,5000 g,2,1050000.00,compras18@empresa.com
+0058,Postobón S.A.,COL,Medellin,05-03-26,"COP 980,000",,0.0120 ton,2,490.000.00,compras19@empresa.com
+0059,Sura S.A.,COL,Medellin,06.04.2026,3.500.000,,10,10,350.000.00,compras20@empresa.com
+0060,Corona S.A.S.,COL,Bogota,2026-05-07,980000,0%,12 kg,20,"$49,000.00",compras1@empresa.com
+0061,IBM Colombia S.A.S.,COL,Medellin,08/06/2026,480.00K,0.0,,20,24000.00,compras2@empresa.com
+0062,Microsoft Colombia Inc.,COL,Bogota,07/09/2026,,0,,2,125.000.00,compras3@empresa.com
+0063,Grupo Éxito S.A.,COL,Medellin,2026/08/10,,15%,12 kg,2,1.750.000.00,
+0064,Alpina Productos Alimenticios,COL,Sopo,11-01-26,3500000,,5000 g,10,"$350,000.00",compras5@empresa.com
+0065,Cementos Argos S.A.,COL,Medellin,12.02.2026,"$250,000",,0.0100 ton,10,25000.00,compras6@empresa.com
+0066,Bancolombia S.A.,COL,Medellin,2026-03-13,"COP 1,250,000",15%,50,20,62.500.00,compras7@empresa.com
+0067,Ecopetrol S.A.,COL,Bogota,14/04/2026,48.000.000,0.05,5 kg,5,960.000.00,compras8@empresa.com
+0068,SAP Colombia S.A.S.,COL,Bogota,05/15/2026,980000,0,,20,"$49,000.00",compras9@empresa.com
+0069,Oracle Colombia Ltda.,COL,Bogota,2026/06/16,250.00K,10%,,1,250000.00,compras10@empresa.com
+0070,Siemens S.A.S.,COL,Tenjo,17-07-26,,,25 kg,2,2.400.000.00,compras11@empresa.com
+0071,Schneider Electric,COL,Bogota,18.08.2026,,,2500 g,2,125.000.00,compras12@empresa.com
+0072,ABB Colombia Ltda.,COL,Bogota,2026-01-19,480000,20%,0.0025 ton,2,"$240,000.00",
+0073,Amazon Web Services Colombia,COL,Bogota,20/02/2026,"$3,500,000",0.0,25,2,1750000.00,compras14@empresa.com
+0074,Google Colombia Ltda.,COL,Bogota,03/21/2026,"COP 250,000",20,"2,5 kg",10,25.000.00,compras15@empresa.com
+0075,Telefónica Colombia,COL,Bogota,2026/04/22,2.100.000,10%,,5,420.000.00,compras16@empresa.com
+0076,Claro Colombia,COL,Bogota,23-05-26,980000,,,2,"$490,000.00",compras17@empresa.com
+0077,Nutresa S.A.,COL,Medellin,24.06.2026,1250.00K,,10 kg,1,1250000.00,compras18@empresa.com
+0078,Postobón S.A.,COL,Medellin,2026-07-25,,15%,25000 g,,12.500.00,compras19@empresa.com
+0079,Sura S.A.,COL,Medellin,26/08/2026,,0.0,0.0250 ton,2,240.000.00,compras20@empresa.com
+0080,Corona S.A.S.,COL,Bogota,01/27/2026,1250000,5,10,1,"$1,250,000.00",compras1@empresa.com
+0081,IBM Colombia S.A.S.,COL,Medellin,2026/02/01,"$980,000",10%,10 kg,2,490000.00,
+0082,Microsoft Colombia Inc.,COL,Bogota,02-03-26,"COP 4,800,000",,,5,960.000.00,compras3@empresa.com
+0083,Grupo Éxito S.A.,COL,Medellin,03.04.2026,250.000,,,1,250.000.00,compras4@empresa.com
+0084,Alpina Productos Alimenticios,COL,Sopo,2026-05-04,750000,10%,2.5 kg,1,"$750,000.00",compras5@empresa.com
+0085,Cementos Argos S.A.,COL,Medellin,05/06/2026,750.00K,0.1,10000 g,20,37500.00,compras6@empresa.com
+0086,Bancolombia S.A.,COL,Medellin,07/06/2026,,10,0.0050 ton,5,196.000.00,compras7@empresa.com
+0087,Ecopetrol S.A.,COL,Bogota,2026/08/07,,10%,2.5,1,4.800.000.00,compras8@empresa.com
+0088,SAP Colombia S.A.S.,COL,Bogota,08-01-26,3500000,,"2,5 kg",1,"$3,500,000.00",compras9@empresa.com
+0089,Oracle Colombia Ltda.,COL,Bogota,09.02.2026,"$2,100,000",,,5,420000.00,compras10@empresa.com
+0090,Siemens S.A.S.,COL,Tenjo,2026-03-10,"COP 750,000",15%,,10,75.000.00,
+0091,Schneider Electric,COL,Bogota,11/04/2026,250.000,0.0,2.5 kg,2,125.000.00,compras12@empresa.com
+0092,ABB Colombia Ltda.,COL,Bogota,05/12/2026,250000,10,25000 g,20,"$12,500.00",compras13@empresa.com
+0093,Amazon Web Services Colombia,COL,Bogota,2026/06/13,750.00K,15%,0.0050 ton,1,750000.00,compras14@empresa.com
+0094,Google Colombia Ltda.,COL,Bogota,14-07-26,,,2.5,5,250.000.00,compras15@empresa.com
+0095,Telefónica Colombia,COL,Bogota,15.08.2026,,,50 kg,1,980.000.00,compras16@empresa.com
+0096,Claro Colombia,COL,Bogota,2026-01-16,2100000,20%,,20,"$105,000.00",compras17@empresa.com
+0097,Nutresa S.A.,COL,Medellin,17/02/2026,"$750,000",0.05,,2,375000.00,compras18@empresa.com
+0098,Postobón S.A.,COL,Medellin,03/18/2026,"COP 3,500,000",0,5 kg,5,700.000.00,compras19@empresa.com
+0099,Sura S.A.,COL,Medellin,2026/04/19,3.500.000,5%,10000 g,2,1.750.000.00,
+0100,Corona S.A.S.,COL,Bogota,20-05-26,480000,,0.0025 ton,10,"$48,000.00",compras1@empresa.com
+0005,Cementos Argos S.A.,COL,Medellin,06.06.2026,250.00K,,,20,12500.00,compras6@empresa.com
+0019,Sura S.A.,COL,Medellin,20/04/2026,980.000,0.05,,10,98.000.00,compras20@empresa.com
+0010,Siemens S.A.S.,COL,Tenjo,11-03-26,"COP 480,000",,10,20,24.000.00,compras11@empresa.com
