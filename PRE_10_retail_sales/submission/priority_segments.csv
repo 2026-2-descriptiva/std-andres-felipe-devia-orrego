@@ -1,0 +1,28 @@
+Category,SalesChannel,PaymentMethod,orders,units,gross_sales,net_sales,avg_order_value,return_rate,sales_share,priority
+Home & Garden,In-Store,Credit Card,47,145,62248.8,49399.61,1324.4426,0.3404,0.0486,Protect
+Electronics,In-Store,PayPal,47,143,57130.18,39331.29,1215.5357,0.3191,0.0446,Protect
+Fashion,Website,PayPal,43,132,71162.8,36242.24,1654.9488,0.5349,0.0556,Fix returns
+Home & Garden,Website,Credit Card,46,135,52930.48,33593.94,1150.6626,0.5217,0.0413,Fix returns
+Electronics,Mobile App,Cash,33,106,53020.3,31250.96,1606.6758,0.4242,0.0414,Protect
+Fashion,Mobile App,Cash,43,132,60920.71,30410.39,1416.7607,0.5116,0.0476,Protect
+Fashion,Mobile App,PayPal,44,133,57839.46,30168.09,1314.5332,0.5455,0.0452,Fix returns
+Fashion,In-Store,Cash,36,100,38726.91,24972.41,1075.7475,0.5,0.0302,Protect
+Home & Garden,In-Store,PayPal,38,104,36531.73,24937.61,961.3613,0.3947,0.0285,Protect
+Electronics,In-Store,Credit Card,38,126,54934.39,22968.18,1445.6418,0.6053,0.0429,Fix returns
+Electronics,Website,PayPal,44,131,51160.77,22495.58,1162.7448,0.5227,0.0399,Fix returns
+Electronics,Mobile App,Credit Card,36,96,42264.6,22440.4,1174.0167,0.4444,0.033,Protect
+Fashion,In-Store,PayPal,29,89,39730.71,22069.85,1370.0245,0.4483,0.031,Protect
+Electronics,Website,Credit Card,31,95,36089.28,21995.99,1164.1703,0.4839,0.0282,Protect
+Fashion,Website,Credit Card,29,84,32010.53,21987.75,1103.8114,0.4483,0.025,Grow
+Electronics,In-Store,Cash,36,114,46485.27,21966.01,1291.2575,0.5833,0.0363,Monitor
+Fashion,In-Store,Credit Card,35,107,43755.62,20664.2,1250.1606,0.5429,0.0342,Monitor
+Electronics,Mobile App,PayPal,39,121,56879.3,19666.57,1458.4436,0.6154,0.0444,Monitor
+Home & Garden,Website,PayPal,29,94,43273.92,19513.91,1492.2041,0.5172,0.0338,Monitor
+Fashion,Website,Cash,40,128,58148.49,19487.11,1453.7122,0.625,0.0454,Monitor
+Fashion,Mobile App,Credit Card,44,132,48919.27,19428.09,1111.8016,0.5,0.0382,Grow
+Home & Garden,Mobile App,Cash,29,97,40779.91,15682.7,1406.2038,0.5862,0.0318,Monitor
+Home & Garden,Website,Cash,29,94,36196.13,14569.14,1248.1424,0.5517,0.0283,Monitor
+Home & Garden,Mobile App,Credit Card,37,115,38088.97,13660.75,1029.4316,0.5946,0.0297,Monitor
+Home & Garden,In-Store,Cash,33,102,41892.3,13426.22,1269.4636,0.6667,0.0327,Monitor
+Home & Garden,Mobile App,PayPal,33,103,37118.57,12674.77,1124.8052,0.5455,0.029,Monitor
+Electronics,Website,Cash,32,111,42506.15,12038.77,1328.3172,0.6562,0.0332,Monitor

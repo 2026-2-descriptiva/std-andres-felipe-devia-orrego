@@ -1,0 +1,4 @@
+Category,orders,units,gross_sales,net_sales,avg_order_value,return_rate,sales_share
+Electronics,336,1043,440470.24,214153.75,1310.9233,0.5119,0.3439
+Fashion,343,1037,451214.5,225430.13,1315.4942,0.5219,0.3523
+Home & Garden,321,989,389060.81,197458.65,1212.0274,0.514,0.3038
