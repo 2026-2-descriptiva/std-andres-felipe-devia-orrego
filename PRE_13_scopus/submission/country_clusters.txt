@@ -1,0 +1,46 @@
+Clusters de colaboracion entre paises
+=====================================
+
+Nodos: 25
+Enlaces: 50
+Clusters: 7
+Modularidad: 0.2859
+
+Cluster 1 (8 elementos)
+  - India (27)
+  - Italy (18)
+  - Germany (18)
+  - Malaysia (15)
+  - Canada (8)
+  - Sweden (7)
+  - Thailand (5)
+  - Singapore (4)
+
+Cluster 2 (7 elementos)
+  - Spain (16)
+  - United Arab Emirates (10)
+  - Finland (7)
+  - France (7)
+  - Portugal (5)
+  - Japan (5)
+  - Iran (4)
+
+Cluster 3 (6 elementos)
+  - United States (75)
+  - United Kingdom (39)
+  - China (36)
+  - Australia (31)
+  - South Korea (13)
+  - Netherlands (6)
+
+Cluster 4 (1 elementos)
+  - Russian Federation (13)
+
+Cluster 5 (1 elementos)
+  - Indonesia (6)
+
+Cluster 6 (1 elementos)
+  - Brazil (6)
+
+Cluster 7 (1 elementos)
+  - Poland (5)

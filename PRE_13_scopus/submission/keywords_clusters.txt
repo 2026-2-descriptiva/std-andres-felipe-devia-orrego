@@ -1,0 +1,43 @@
+Clusters tematicos de palabras clave
+====================================
+
+Nodos: 30
+Enlaces: 212
+Clusters: 3
+Modularidad: 0.2217
+
+Cluster 1 (14 elementos)
+  - real-estates (32)
+  - property (32)
+  - blockchain (19)
+  - digital transformation (15)
+  - decision making (14)
+  - commerce (11)
+  - block-chain (10)
+  - sustainable development (10)
+  - real estate technology (10)
+  - automation (9)
+  - information systems (8)
+  - smart city (8)
+  - investments (8)
+  - virtual reality (8)
+
+Cluster 2 (13 elementos)
+  - proptech (84)
+  - real estate (33)
+  - artificial intelligence (27)
+  - housing (20)
+  - innovation (15)
+  - machine learning (14)
+  - fintech (13)
+  - digitalization (11)
+  - big data (9)
+  - housing market (8)
+  - sustainability (8)
+  - technology adoption (8)
+  - digitization (7)
+
+Cluster 3 (3 elementos)
+  - technology (21)
+  - technology transfer (14)
+  - intellectual property (11)

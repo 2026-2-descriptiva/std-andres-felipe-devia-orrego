@@ -1,0 +1,14 @@
+kpi,value
+years_covered,3.0
+months_covered,36.0
+carriers,21.0
+scheduled_flights,21607106.0
+cancelled_flights,420175.0
+operated_flights,21186931.0
+delayed_departure_15_flights,4324953.0
+positive_departure_delay_minutes,270951248.0
+cancellation_rate,0.0194
+completion_rate,0.9806
+delay_rate,0.2041
+avg_delay_minutes_per_operated,12.7886
+avg_delay_minutes_per_delayed,62.6484
