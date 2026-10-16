@@ -1,0 +1,19 @@
+tema,hallazgo,valor
+Cobertura,Empleados analizados,1000.0
+Cobertura,Departamentos analizados,7.0
+Nivel salarial,Salario mediano de la compañía (COP),9459118.5
+Nivel salarial,Salario promedio de la compañía (COP),10073235.769
+Brecha de carrera,Salario mediano de la trayectoria directiva (COP),14632908.0
+Brecha de carrera,Salario mediano de la trayectoria técnica (COP),8138389.0
+Brecha de carrera,Brecha directiva vs tecnica (%),0.798
+Brecha por departamento,Departamento con mayor brecha de trayectoria: Clientes menores,1.0858
+Brecha por departamento,Departamento mejor pagado: Clientes mayoristas,10342126.0
+Brecha por departamento,Departamentos por debajo de la mediana de la compañía,2.0
+Salarios altos,Umbral de salario alto de la trayectoria directiva (COP),18139106.0
+Salarios altos,Umbral de salario alto de la trayectoria técnica (COP),11939046.0
+Salarios altos,Categorias con salarios altos concentrados,3.0
+Experiencia,Correlacion experiencia-salario,0.8572
+Experiencia,Experiencia técnica mediana (años),9.0
+Recomendaciones,Segmentos con ajuste al alza,4.0
+Recomendaciones,Empleados en segmentos rezagados,91.0
+Recomendaciones,Impacto mensual de los ajustes (COP),75256459.0
