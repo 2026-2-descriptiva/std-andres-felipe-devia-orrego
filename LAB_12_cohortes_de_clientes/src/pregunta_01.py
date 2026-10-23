@@ -1,4 +1,49 @@
+from pathlib import Path
+
+import matplotlib
+
+matplotlib.use("Agg")
+
+import matplotlib.pyplot as plt
 import pandas as pd
+
+
+def _graficar(retencion, archivo):
+    """Dibuja el mapa de calor de retención por cohorte y período."""
+    matriz = retencion.pivot(
+        index="cohort_month", columns="period_index", values="retention_rate"
+    )
+
+    figura, ejes = plt.subplots(figsize=(10, 6))
+    imagen = ejes.imshow(matriz.values, cmap="Blues", vmin=0, vmax=1)
+
+    ejes.set_xticks(range(len(matriz.columns)))
+    ejes.set_xticklabels(matriz.columns)
+    ejes.set_yticks(range(len(matriz.index)))
+    ejes.set_yticklabels(matriz.index)
+    ejes.set_xlabel("Períodos desde la primera compra")
+    ejes.set_ylabel("Cohorte")
+    ejes.set_title("Retención de clientes por cohorte")
+
+    for fila in range(matriz.shape[0]):
+        for columna in range(matriz.shape[1]):
+            valor = matriz.values[fila, columna]
+            if pd.isna(valor):
+                continue
+            ejes.text(
+                columna,
+                fila,
+                f"{valor:.1%}",
+                ha="center",
+                va="center",
+                color="white" if valor > 0.5 else "black",
+                fontsize=8,
+            )
+
+    figura.colorbar(imagen, ax=ejes, label="Retención")
+    figura.tight_layout()
+    figura.savefig(archivo, dpi=150)
+    plt.close(figura)
 
 
 def build_cohort_analysis() -> pd.DataFrame:
@@ -44,4 +89,42 @@ def build_cohort_analysis() -> pd.DataFrame:
         ...
     """
 
-    raise NotImplementedError
+    ventas = pd.read_csv("data/sales.csv.gz", parse_dates=["OrderDate"])
+    ventas["order_month"] = ventas["OrderDate"].dt.to_period("M")
+    ventas["cohort"] = ventas.groupby("CustomerID")["order_month"].transform("min")
+    ventas["period_index"] = (
+        ventas["order_month"] - ventas["cohort"]
+    ).apply(lambda periodos: periodos.n)
+
+    retencion = (
+        ventas.groupby(["cohort", "period_index"])["CustomerID"]
+        .nunique()
+        .reset_index(name="active_customers")
+    )
+    retencion["cohort_month"] = retencion["cohort"].astype(str)
+    tamanos = retencion[retencion["period_index"] == 0].set_index("cohort_month")[
+        "active_customers"
+    ]
+    retencion["cohort_size"] = retencion["cohort_month"].map(tamanos)
+    retencion["retention_rate"] = (
+        retencion["active_customers"] / retencion["cohort_size"]
+    )
+    retencion = (
+        retencion.sort_values(["cohort_month", "period_index"])
+        .reset_index(drop=True)[
+            [
+                "cohort_month",
+                "period_index",
+                "active_customers",
+                "cohort_size",
+                "retention_rate",
+            ]
+        ]
+    )
+
+    submission = Path("submission")
+    submission.mkdir(exist_ok=True)
+    retencion.to_csv(submission / "cohort_retention.csv", index=False)
+    _graficar(retencion, submission / "cohort_retention_heatmap.png")
+
+    return retencion

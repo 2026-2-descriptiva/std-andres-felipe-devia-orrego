@@ -22,3 +22,8 @@
 --
 --  Escriba su consulta debajo de esta línea.
 --
+
+SELECT STRFTIME('%Y', c14) AS YEAR, COUNT(*) AS CANT
+FROM tbl1
+WHERE YEAR = '2018'
+GROUP BY YEAR;

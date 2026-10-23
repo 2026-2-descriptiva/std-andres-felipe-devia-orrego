@@ -1,3 +1,37 @@
+import json
+import re
+from pathlib import Path
+
+import pandas as pd
+
+REQUIRED_COLUMNS = [
+    "supplier_id",
+    "supplier",
+    "country",
+    "city",
+    "purchase_date",
+    "amount",
+    "discount",
+    "weight",
+    "units",
+    "unit_price",
+    "contact_email",
+]
+
+EMAIL_PATTERN = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+
+
+def _normalizar(nombre):
+    """Pasa un encabezado a minúsculas sin BOM ni espacios externos."""
+    return nombre.replace("﻿", "").strip().lower().replace(" ", "_")
+
+
+def _es_faltante(serie):
+    """Marca como faltantes las celdas vacías y las que contienen `N/A`."""
+    valores = serie.str.strip()
+    return (valores == "") | (valores == "N/A")
+
+
 def main():
     """
     Antes de limpiar o analizar un conjunto de datos, un analista debe
@@ -48,4 +82,50 @@ def main():
         }
     """
 
-    raise NotImplementedError
+    ventas = pd.read_csv(
+        "data/ventas.csv.gz",
+        dtype=str,
+        keep_default_na=False,
+        encoding="utf-8",
+        encoding_errors="replace",
+    )
+    ventas.columns = [_normalizar(nombre) for nombre in ventas.columns]
+
+    units = pd.to_numeric(ventas["units"].str.strip(), errors="coerce")
+
+    report = {
+        "row_count": len(ventas),
+        "column_count": len(ventas.columns),
+        "missing_required_columns": sorted(
+            columna for columna in REQUIRED_COLUMNS if columna not in ventas.columns
+        ),
+        "unexpected_columns": sorted(
+            columna for columna in ventas.columns if columna not in REQUIRED_COLUMNS
+        ),
+        "duplicate_row_count": int(ventas.duplicated().sum()),
+        "duplicate_supplier_id_row_count": int(
+            ventas["supplier_id"].duplicated(keep=False).sum()
+        ),
+        "missing_value_count_by_column": {
+            columna: int(_es_faltante(ventas[columna]).sum())
+            for columna in ventas.columns
+        },
+        "invalid_email_count": int(
+            sum(
+                EMAIL_PATTERN.match(valor.strip()) is None
+                for valor in ventas["contact_email"]
+            )
+        ),
+        "invalid_unit_count": int(
+            ((units.notna()) & ((units <= 0) | (units != units.round()))).sum()
+        ),
+        "country_values": sorted(ventas["country"].unique()),
+    }
+
+    submission = Path("submission")
+    submission.mkdir(exist_ok=True)
+    (submission / "data_quality_report.json").write_text(
+        json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8"
+    )
+
+    return report

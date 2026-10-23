@@ -1,4 +1,36 @@
+from pathlib import Path
+
 import pandas as pd
+
+DISCOUNT_BANDS = ["0%", "1%-5%", "6%-10%", "más de 10%"]
+
+
+def _banda_de_descuento(descuento):
+    """Clasifica un descuento en uno de los cuatro rangos definidos."""
+    if descuento <= 0:
+        return "0%"
+    if descuento <= 0.05:
+        return "1%-5%"
+    if descuento <= 0.10:
+        return "6%-10%"
+    return "más de 10%"
+
+
+def _indicadores(grupo):
+    """Calcula ventas, utilidad, margen y pérdidas de un conjunto de líneas."""
+    perdidas = grupo.loc[grupo["Profit"] < 0, "Profit"]
+    ventas = grupo["Sales"].sum()
+    utilidad = grupo["Profit"].sum()
+    return pd.Series(
+        {
+            "lines": len(grupo),
+            "sales": ventas,
+            "profit": utilidad,
+            "profit_margin": utilidad / ventas,
+            "loss_line_rate": len(perdidas) / len(grupo),
+            "lost_profit": -perdidas.sum(),
+        }
+    )
 
 
 def pregunta_01() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
@@ -50,4 +82,68 @@ def pregunta_01() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
         ...
     """
 
-    raise NotImplementedError
+    pedidos = pd.read_csv(
+        "data/superstore_orders.csv.gz", sep=";", decimal=","
+    )
+    pedidos["discount_band"] = pedidos["Discount"].apply(_banda_de_descuento)
+
+    perdidas = pedidos.loc[pedidos["Profit"] < 0, "Profit"]
+    ventas = pedidos["Sales"].sum()
+    utilidad = pedidos["Profit"].sum()
+    summary = pd.DataFrame(
+        [
+            {
+                "lines": len(pedidos),
+                "orders": pedidos["Order ID"].nunique(),
+                "sales": ventas,
+                "profit": utilidad,
+                "profit_margin": utilidad / ventas,
+                "loss_lines": len(perdidas),
+                "loss_line_rate": len(perdidas) / len(pedidos),
+                "lost_profit": -perdidas.sum(),
+            }
+        ]
+    )
+
+    discounts = (
+        pedidos.groupby("discount_band")[pedidos.columns.tolist()]
+        .apply(_indicadores)
+        .reindex(DISCOUNT_BANDS)
+        .reset_index()
+    )
+    discounts["lines"] = discounts["lines"].astype("int64")
+
+    segments = (
+        pedidos.groupby(["Customer Segment", "Product Category"])[
+            pedidos.columns.tolist()
+        ]
+        .apply(_indicadores)
+        .reset_index()
+        .drop(columns="loss_line_rate")
+    )
+    segments["lines"] = segments["lines"].astype("int64")
+    segments = (
+        segments[segments["lines"] >= 100]
+        .sort_values("lost_profit", ascending=False)
+        .head(5)
+        .reset_index(drop=True)
+    )
+    segments = segments[
+        [
+            "Customer Segment",
+            "Product Category",
+            "lines",
+            "sales",
+            "profit",
+            "profit_margin",
+            "lost_profit",
+        ]
+    ]
+
+    submission = Path("submission")
+    submission.mkdir(exist_ok=True)
+    summary.to_csv(submission / "profitability_summary.csv", index=False)
+    discounts.to_csv(submission / "discount_summary.csv", index=False)
+    segments.to_csv(submission / "priority_segments.csv", index=False)
+
+    return summary, discounts, segments

@@ -1,4 +1,70 @@
+from pathlib import Path
+
+import numpy as np
 import pandas as pd
+
+CHANNELS = ["letter", "web"]
+DAY_NAMES = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+]
+LEGAL_BUSINESS_DAYS = 15
+
+
+def _cargar_solicitudes():
+    """Lee los dos canales, elimina filas repetidas y calcula los tiempos."""
+    canales = []
+    for canal in CHANNELS:
+        solicitudes = pd.read_csv(
+            f"data/historical_requests_{canal}.csv.gz"
+        ).drop_duplicates()
+        solicitudes["channel"] = canal
+        canales.append(solicitudes)
+
+    solicitudes = pd.concat(canales, ignore_index=True)
+    solicitudes["in_date"] = pd.to_datetime(solicitudes["in_date"])
+    solicitudes["out_date"] = pd.to_datetime(solicitudes["out_date"])
+
+    respondidas = solicitudes["out_date"].notna()
+    solicitudes["calendar_days"] = (
+        solicitudes["out_date"] - solicitudes["in_date"]
+    ).dt.days
+
+    un_dia = np.timedelta64(1, "D")
+    entrada = (
+        solicitudes.loc[respondidas, "in_date"].to_numpy().astype("datetime64[D]")
+    )
+    salida = (
+        solicitudes.loc[respondidas, "out_date"].to_numpy().astype("datetime64[D]")
+    )
+
+    dias_habiles = np.full(len(solicitudes), np.nan)
+    dias_habiles[respondidas.to_numpy()] = np.busday_count(
+        entrada + un_dia, salida + un_dia
+    )
+    solicitudes["business_days"] = dias_habiles
+    solicitudes["on_time"] = solicitudes["business_days"].le(LEGAL_BUSINESS_DAYS)
+    solicitudes["year"] = solicitudes["in_date"].dt.year
+
+    return solicitudes
+
+
+def _resumir(grupo, columnas):
+    """Arma un resumen de un grupo de solicitudes con las columnas pedidas."""
+    indicadores = {
+        "requests": len(grupo),
+        "answered": int(grupo["out_date"].notna().sum()),
+        "pending": int(grupo["out_date"].isna().sum()),
+        "median_calendar_days": grupo["calendar_days"].median(),
+        "median_business_days": grupo["business_days"].median(),
+        "on_time_rate": grupo["on_time"].mean(),
+    }
+    return pd.Series({columna: indicadores[columna] for columna in columnas})
 
 
 def pregunta_01() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
@@ -61,4 +127,50 @@ def pregunta_01() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
         ...
     """
 
-    raise NotImplementedError
+    solicitudes = _cargar_solicitudes()
+
+    columnas_canal = [
+        "requests",
+        "answered",
+        "pending",
+        "median_business_days",
+        "on_time_rate",
+    ]
+    channels = (
+        solicitudes.groupby("channel")[solicitudes.columns.tolist()]
+        .apply(_resumir, columnas=columnas_canal)
+        .reindex(CHANNELS)
+        .reset_index()
+    )
+
+    columnas_anio = ["requests", "pending", "on_time_rate"]
+    yearly = (
+        solicitudes.groupby(["year", "channel"])[solicitudes.columns.tolist()]
+        .apply(_resumir, columnas=columnas_anio)
+        .sort_index()
+        .reset_index()
+    )
+
+    columnas_dia = ["requests", "median_calendar_days", "median_business_days"]
+    days = (
+        solicitudes.groupby("day_name")[solicitudes.columns.tolist()]
+        .apply(_resumir, columnas=columnas_dia)
+        .reindex(DAY_NAMES)
+        .reset_index()
+    )
+
+    for tabla, enteras in [
+        (channels, ["requests", "answered", "pending"]),
+        (yearly, ["requests", "pending"]),
+        (days, ["requests"]),
+    ]:
+        for columna in enteras:
+            tabla[columna] = tabla[columna].astype("int64")
+
+    submission = Path("submission")
+    submission.mkdir(exist_ok=True)
+    channels.to_csv(submission / "channel_summary.csv", index=False)
+    yearly.to_csv(submission / "yearly_summary.csv", index=False)
+    days.to_csv(submission / "entry_day_summary.csv", index=False)
+
+    return channels, yearly, days

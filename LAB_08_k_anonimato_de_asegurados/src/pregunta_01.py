@@ -1,3 +1,60 @@
+import json
+from pathlib import Path
+
+import pandas as pd
+
+ORIGINAL_QUASI_IDENTIFIERS = ["age", "sex", "bmi", "children", "region"]
+SCHEMES = {
+    "with_children": ["age_group", "sex", "bmi_group", "children_group", "region"],
+    "without_children": ["age_group", "sex", "bmi_group", "region"],
+}
+K = 5
+
+
+def _generalizar(asegurados):
+    """Agrega las columnas generalizadas de edad, masa corporal e hijos."""
+    asegurados = asegurados.copy()
+    asegurados["age_group"] = pd.cut(
+        asegurados["age"],
+        bins=[18, 30, 40, 50, 65],
+        right=False,
+        labels=["18-29", "30-39", "40-49", "50-64"],
+    ).astype(str)
+    asegurados["bmi_group"] = pd.cut(
+        asegurados["bmi"],
+        bins=[0, 18.5, 25, 30, float("inf")],
+        right=False,
+        labels=["bajo peso", "normal", "sobrepeso", "obesidad"],
+    ).astype(str)
+    asegurados["children_group"] = pd.cut(
+        asegurados["children"],
+        bins=[0, 1, 3, float("inf")],
+        right=False,
+        labels=["0", "1-2", "3+"],
+    ).astype(str)
+    return asegurados
+
+
+def _evaluar_esquema(asegurados, quasi_identifiers):
+    """Mide clases, supresiones y diversidad del atributo sensible."""
+    tamanos = asegurados.groupby(quasi_identifiers)["smoker"].transform("size")
+    publicados = asegurados[tamanos >= K]
+    diversidad = publicados.groupby(quasi_identifiers)["smoker"].transform("nunique")
+    clases_publicadas = publicados.groupby(quasi_identifiers)["smoker"].nunique()
+
+    resumen = {
+        "quasi_identifiers": quasi_identifiers,
+        "equivalence_classes": asegurados.groupby(quasi_identifiers).ngroups,
+        "k_before_suppression": int(tamanos.min()),
+        "suppressed_records": int((tamanos < K).sum()),
+        "published_records": int(len(publicados)),
+        "published_classes": int(len(clases_publicadas)),
+        "classes_without_smoker_diversity": int((clases_publicadas < 2).sum()),
+        "records_without_smoker_diversity": int((diversidad < 2).sum()),
+    }
+    return resumen, publicados
+
+
 def pregunta_01():
     """
     Una aseguradora quiere publicar datos de sus afiliados para que un grupo
@@ -80,4 +137,42 @@ def pregunta_01():
         }
     """
 
-    raise NotImplementedError
+    asegurados = _generalizar(pd.read_csv("data/insurance.csv.gz"))
+
+    tamanos_originales = asegurados.groupby(ORIGINAL_QUASI_IDENTIFIERS)[
+        "smoker"
+    ].transform("size")
+
+    schemes = {}
+    publicados_por_esquema = {}
+    for nombre, quasi_identifiers in SCHEMES.items():
+        resumen, publicados = _evaluar_esquema(asegurados, quasi_identifiers)
+        schemes[nombre] = resumen
+        publicados_por_esquema[nombre] = publicados
+
+    seleccionado = min(
+        schemes, key=lambda nombre: schemes[nombre]["suppressed_records"]
+    )
+    publicados = publicados_por_esquema[seleccionado]
+    columnas = SCHEMES[seleccionado] + ["smoker", "charges"]
+    publicados = publicados[columnas]
+
+    report = {
+        "original_k": int(tamanos_originales.min()),
+        "original_unique_records": int((tamanos_originales == 1).sum()),
+        "schemes": schemes,
+        "selected_scheme": seleccionado,
+        "mean_charges_original": float(asegurados["charges"].mean()),
+        "mean_charges_published": float(publicados["charges"].mean()),
+        "smoker_rate_original": float((asegurados["smoker"] == "yes").mean()),
+        "smoker_rate_published": float((publicados["smoker"] == "yes").mean()),
+    }
+
+    submission = Path("submission")
+    submission.mkdir(exist_ok=True)
+    (submission / "privacy_report.json").write_text(
+        json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8"
+    )
+    publicados.to_csv(submission / "insurance_published.csv", index=False)
+
+    return report
